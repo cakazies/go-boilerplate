@@ -8,7 +8,13 @@ import (
 )
 
 func main() {
-	path := os.Getenv("HOME") + "/go/src/try"
+	project := os.Getenv("PROJECT")
+	if project == "" {
+		println("ENV null, you can set this env with `PROJECT=your_project` go run main.go")
+		return
+	}
+
+	path := os.Getenv("HOME") + "/go/src/" + project
 	go template.Configs(path)
 	go template.Utils(path)
 	go template.Controllers(path)
